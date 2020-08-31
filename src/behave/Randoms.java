@@ -16,7 +16,7 @@ public class Randoms implements Iterable<Integer> {
 
     @Override
     public Iterator<Integer> iterator() {
-        Iterator<Integer> it = new Iterator<Integer>() {
+        return new Iterator<>() {
             @Override
             public boolean hasNext() {
                 return true;
@@ -24,15 +24,9 @@ public class Randoms implements Iterable<Integer> {
 
             @Override
             public Integer next() {
-                max -= min;
-                return (int) (random.nextInt(1) * ++max) + min;
-            }
-
-            @Override
-            public void remove() {
-                throw new UnsupportedOperationException();
+                int bnd = max - min + 1;
+                return random.nextInt(Math.abs(bnd)) + min;
             }
         };
-        return it;
     }
 }
